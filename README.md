@@ -1,11 +1,13 @@
-# Install
 ## Requirements
 This repo only requires PyTorch 1.8 or later. The example scripts have additional requirements defined in examples/requirements.txt.
 
 ## Installation
-First, Clone this repo and go inside the directory 
+First, Clone this repo and go inside the directory
+```
+$ git clone https://github.com/NMadhub/Distributed_Training_CV.git
+$ cd Distributed_Training_CV
 $ pip3 install .  
-
+```
 # Training Example
 
 Cifar-10 distributed training example.
