@@ -1,13 +1,21 @@
-# KFAC Training Examples
+# Install
+## Requirements
+This repo only requires PyTorch 1.8 or later. The example scripts have additional requirements defined in examples/requirements.txt.
 
-Cifar-10 and ImageNet distributed training with K-FAC examples.
+## Installation
+First, Clone this repo and go inside the directory 
+$ pip3 install .  
+
+# Training Example
+
+Cifar-10 distributed training example.
 
 ## Requirements
 
 The provided example training scripts have additional package requirements defined in `examples/requirements.txt`.
 
 ```
-$ pip install -r examples/requirements.txt
+$ pip3 install -r examples/requirements.txt
 ```
 
 ## Usage
@@ -20,6 +28,8 @@ For PyTorch 1.9, use `python -m torch.distributed.run` and for PyTorch 1.8, use 
 ```
 $ torchrun --standalone --nnodes 1 --nproc_per_node=[NGPUS] \
       examples/torch_{cifar10,imagenet}_resnet.py [ARGS]
+
+$ python3 -m torch.distributed.launch --nnodes 1 --nproc_per_node=[NGPUS] /home/ninadm/my_codes/ptl/kfac-pytorch/examples/torch_cifar10_resnet.py --batch-size 32 --val-batch-size 32
 ```
 
 #### Multi-Node, Multi-GPU
@@ -27,7 +37,10 @@ On each node, run:
 ```
 $ torchrun --nnodes=[NNODES] --nproc_per_node=[NGPUS] --rdzv_backend=c10d --rdzv_endpoint=[HOSTADDR] \
       examples/torch_{cifar10,imagenet}_resnet.py [ARGS]
+      
+$ python3 -m torch.distributed.launch --nnodes=[NNODES] --nproc_per_node=[NGPUS] --rdzv_backend=c10d --rdzv_endpoint=[HOSTADDR] \
+      examples/torch_{cifar10,imagenet}_resnet.py --batch-size 32 --val-batch-size 32
 ```
 
 The full list of arguments can be found with the `--help` argument.
-E.g., `python examples/torch_cifar10_resnet.py --help`.
+E.g., `python3 examples/torch_cifar10_resnet.py --help`.
